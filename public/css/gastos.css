@@ -1,0 +1,453 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #F3F4F6;
+    color: #1F2937;
+}
+
+/* ── ENCABEZADO ── */
+.gastos-main {
+    min-height: 100vh;
+}
+
+.gastos-header {
+    background-color: #1F2937;
+    padding: 40px 6%;
+    border-bottom: 3px solid #FBBF24;
+}
+
+.btn-volver {
+    display: inline-block;
+    color: #FBBF24;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s;
+}
+
+.btn-volver:hover {
+    opacity: 0.75;
+}
+
+.gastos-header-texto h1 {
+    font-size: 2.2rem;
+    color: #FEFCE8;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.gastos-header-texto h1 span {
+    color: #FBBF24;
+}
+
+.gastos-header-texto p {
+    color: #9CA3AF;
+    margin-top: 8px;
+    font-size: 1rem;
+}
+
+/* ── LAYOUT PRINCIPAL ── */
+.gastos-contenedor {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 28px;
+    padding: 36px 6%;
+    align-items: start;
+}
+
+/* ── CARDS ── */
+.card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    border: 1px solid #E5E7EB;
+    margin-bottom: 24px;
+}
+
+.card:last-child {
+    margin-bottom: 0;
+}
+
+.card-titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.card-icono {
+    font-size: 20px;
+}
+
+.card-titulo h2 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1F2937;
+    flex: 1;
+}
+
+.badge {
+    background-color: #FEF3C7;
+    color: #92400E;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+}
+
+/* ── FORMULARIO ── */
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 18px;
+}
+
+.campo label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #374151;
+}
+
+/* Select */
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper select {
+    width: 100%;
+    padding: 11px 40px 11px 14px;
+    border: 1.5px solid #D1D5DB;
+    border-radius: 8px;
+    font-size: 0.93rem;
+    color: #1F2937;
+    background: #F9FAFB;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.select-wrapper select:focus {
+    outline: none;
+    border-color: #FBBF24;
+    background: #fff;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6B7280;
+    pointer-events: none;
+    font-size: 14px;
+}
+
+/* Input con prefijo $ */
+.input-prefix-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #D1D5DB;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #F9FAFB;
+    transition: border-color 0.2s;
+}
+
+.input-prefix-wrapper:focus-within {
+    border-color: #FBBF24;
+    background: #fff;
+}
+
+.input-prefix {
+    padding: 11px 12px;
+    background: #F3F4F6;
+    color: #6B7280;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-right: 1.5px solid #D1D5DB;
+}
+
+.input-prefix-wrapper input {
+    flex: 1;
+    padding: 11px 14px;
+    border: none;
+    background: transparent;
+    font-size: 0.93rem;
+    color: #1F2937;
+    font-family: inherit;
+}
+
+.input-prefix-wrapper input:focus {
+    outline: none;
+}
+
+/* Botón agregar */
+.btn-agregar {
+    width: 100%;
+    padding: 13px;
+    background-color: #1F2937;
+    color: #FBBF24;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: default;
+    font-family: inherit;
+    letter-spacing: 0.4px;
+    margin-top: 4px;
+    transition: background 0.2s;
+}
+
+.btn-agregar:hover {
+    background-color: #374151;
+}
+
+/* ── RESUMEN ── */
+.card-resumen {
+    background: #1F2937;
+    border-color: #374151;
+}
+
+.card-resumen .card-titulo {
+    border-bottom-color: #374151;
+}
+
+.card-resumen .card-titulo h2 {
+    color: #FEFCE8;
+}
+
+.resumen-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.resumen-fila {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #9CA3AF;
+    padding: 8px 0;
+    border-bottom: 1px solid #374151;
+}
+
+.resumen-fila strong {
+    color: #FEFCE8;
+    font-weight: 600;
+}
+
+.resumen-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FBBF24;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 8px;
+}
+
+.resumen-total span {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1F2937;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.resumen-total strong {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #1F2937;
+}
+
+/* ── TABLA ── */
+.tabla-wrapper {
+    overflow-x: auto;
+}
+
+.tabla-gastos {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.93rem;
+}
+
+.tabla-gastos thead tr {
+    background-color: #F9FAFB;
+    border-bottom: 2px solid #E5E7EB;
+}
+
+.tabla-gastos th {
+    padding: 13px 16px;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #6B7280;
+}
+
+.tabla-gastos tbody tr {
+    border-bottom: 1px solid #F3F4F6;
+    transition: background 0.15s;
+}
+
+.tabla-gastos tbody tr:last-child {
+    border-bottom: none;
+}
+
+.tabla-gastos tbody tr:hover {
+    background-color: #FFFBEB;
+}
+
+.tabla-gastos td {
+    padding: 14px 16px;
+    color: #374151;
+    vertical-align: middle;
+}
+
+.td-num {
+    color: #9CA3AF;
+    font-weight: 600;
+    font-size: 0.85rem;
+    width: 40px;
+}
+
+.td-valor {
+    font-weight: 700;
+    color: #1F2937;
+    font-size: 0.98rem;
+}
+
+/* Tags de categoría */
+.tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.tag-alimentacion  { background: #FEF3C7; color: #92400E; }
+.tag-transporte    { background: #DBEAFE; color: #1E40AF; }
+.tag-vivienda      { background: #D1FAE5; color: #065F46; }
+.tag-entretenimiento { background: #EDE9FE; color: #5B21B6; }
+.tag-otros         { background: #F3F4F6; color: #374151; }
+
+/* Botones de acción */
+.td-acciones {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-editar,
+.btn-eliminar {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: none;
+    cursor: default;
+    font-family: inherit;
+    transition: opacity 0.2s;
+}
+
+.btn-editar {
+    background-color: #FEF3C7;
+    color: #92400E;
+    border: 1px solid #FDE68A;
+}
+
+.btn-eliminar {
+    background-color: #FEE2E2;
+    color: #991B1B;
+    border: 1px solid #FECACA;
+}
+
+.btn-editar:hover  { opacity: 0.75; }
+.btn-eliminar:hover { opacity: 0.75; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+    .gastos-contenedor {
+        grid-template-columns: 1fr;
+        padding: 24px 5%;
+    }
+
+    .gastos-header {
+        padding: 28px 5%;
+    }
+
+    .gastos-header-texto h1 {
+        font-size: 1.7rem;
+    }
+
+    .td-acciones {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tabla-gastos th,
+    .tabla-gastos td {
+        padding: 10px 10px;
+    }
+
+    .gastos-header-texto h1 {
+        font-size: 1.4rem;
+    }
+}
+
+/* ── SELECTOR DE MES ── */
+
+input[type="date"] {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid #D1D5DB;
+    border-radius: 8px;
+    font-size: 0.93rem;
+    color: #1F2937;
+    background: #F9FAFB;
+    font-family: inherit;
+    transition: border-color 0.2s;
+    cursor: pointer;
+}
+
+input[type="date"]:focus {
+    outline: none;
+    border-color: #FBBF24;
+    background: #fff;
+}
+
+/* ── COLUMNA FECHA EN TABLA ── */
+.td-fecha {
+    font-size: 0.82rem;
+    color: #6B7280;
+    font-weight: 600;
+    white-space: nowrap;
+    width: 70px;
+}

@@ -1,0 +1,358 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #F3F4F6;
+    color: #1F2937;
+}
+
+/* ── ENCABEZADO ── */
+.ahorro-main {
+    min-height: 100vh;
+}
+
+.ahorro-header {
+    background-color: #1F2937;
+    padding: 40px 6%;
+    border-bottom: 3px solid #FBBF24;
+}
+
+.btn-volver {
+    display: inline-block;
+    color: #FBBF24;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s;
+}
+
+.btn-volver:hover {
+    opacity: 0.75;
+}
+
+.ahorro-header-texto h1 {
+    font-size: 2.2rem;
+    color: #FEFCE8;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.ahorro-header-texto h1 span {
+    color: #FBBF24;
+}
+
+.ahorro-header-texto p {
+    color: #9CA3AF;
+    margin-top: 8px;
+    font-size: 1rem;
+}
+
+/* ── LAYOUT ── */
+.ahorro-contenedor {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 28px;
+    padding: 36px 6%;
+    align-items: start;
+}
+
+/* ── CARDS ── */
+.card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    border: 1px solid #E5E7EB;
+    margin-bottom: 24px;
+}
+
+.card:last-child {
+    margin-bottom: 0;
+}
+
+.card-titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.card-icono {
+    font-size: 20px;
+}
+
+.card-titulo h2 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1F2937;
+}
+
+/* ── FORMULARIO ── */
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 18px;
+}
+
+.campo label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #374151;
+}
+
+.input-prefix-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #D1D5DB;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #F9FAFB;
+    transition: border-color 0.2s;
+}
+
+.input-prefix-wrapper:focus-within {
+    border-color: #FBBF24;
+    background: #fff;
+}
+
+.input-prefix {
+    padding: 11px 12px;
+    background: #F3F4F6;
+    color: #6B7280;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-right: 1.5px solid #D1D5DB;
+}
+
+.input-prefix-wrapper input {
+    flex: 1;
+    padding: 11px 14px;
+    border: none;
+    background: transparent;
+    font-size: 0.93rem;
+    color: #1F2937;
+    font-family: inherit;
+}
+
+.input-prefix-wrapper input:focus {
+    outline: none;
+}
+
+/* Select */
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper select {
+    width: 100%;
+    padding: 11px 40px 11px 14px;
+    border: 1.5px solid #D1D5DB;
+    border-radius: 8px;
+    font-size: 0.93rem;
+    color: #1F2937;
+    background: #F9FAFB;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.select-wrapper select:focus {
+    outline: none;
+    border-color: #FBBF24;
+    background: #fff;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6B7280;
+    pointer-events: none;
+    font-size: 14px;
+}
+
+.btn-calcular {
+    width: 100%;
+    padding: 13px;
+    background-color: #1F2937;
+    color: #FBBF24;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.4px;
+    margin-top: 4px;
+    transition: background 0.2s;
+}
+
+.btn-calcular:hover {
+    background-color: #374151;
+}
+
+/* ── BARRA DE PROGRESO ── */
+.progreso-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    color: #6B7280;
+    margin-bottom: 10px;
+}
+
+.progreso-labels strong {
+    color: #1F2937;
+}
+
+.barra-fondo {
+    width: 100%;
+    height: 18px;
+    background-color: #E5E7EB;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.barra-progreso {
+    height: 100%;
+    background: linear-gradient(90deg, #FBBF24, #F59E0B);
+    border-radius: 999px;
+    transition: width 0.6s ease;
+    width: 0%;
+}
+
+.progreso-porcentaje {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #6B7280;
+    margin-top: 4px;
+}
+
+.progreso-porcentaje span {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #FBBF24;
+}
+
+/* ── RESULTADOS ── */
+.resultado-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 20px;
+}
+
+.resultado-fila {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #6B7280;
+    padding: 10px 0;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.resultado-fila strong {
+    color: #1F2937;
+    font-weight: 600;
+}
+
+.resultado-subtotal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #F9FAFB;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 8px;
+    border: 1px solid #E5E7EB;
+}
+
+.resultado-subtotal span {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.resultado-subtotal strong {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #1F2937;
+}
+
+/* ── CUOTA MENSUAL ── */
+.card-cuota {
+    background: #1F2937;
+    border-color: #374151;
+}
+
+.card-cuota .card-titulo h2 {
+    color: #FEFCE8;
+}
+
+.cuota-valor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 0 12px;
+}
+
+.cuota-valor span {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #FBBF24;
+    letter-spacing: -1px;
+}
+
+.cuota-nota {
+    text-align: center;
+    color: #9CA3AF;
+    font-size: 0.9rem;
+    padding-bottom: 8px;
+}
+
+.cuota-nota strong {
+    color: #FEFCE8;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+    .ahorro-contenedor {
+        grid-template-columns: 1fr;
+        padding: 24px 5%;
+    }
+
+    .ahorro-header {
+        padding: 28px 5%;
+    }
+
+    .ahorro-header-texto h1 {
+        font-size: 1.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .ahorro-header-texto h1 {
+        font-size: 1.4rem;
+    }
+
+    .cuota-valor span {
+        font-size: 2rem;
+    }
+}

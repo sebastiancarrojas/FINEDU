@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #FEFCE8;
+}
+
+nav {
+  background-color: #1F2937;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: #FBBF24;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+ul li a {
+  text-decoration: none;
+  color: #FEFCE8;
+  font-size: 1rem;
+  transition: 0.3s;
+  position: relative;
+}
+
+/* Efecto hover — solo en links normales, NO en .btn */
+ul li a:not(.btn)::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: #FCD34D;
+  left: 0;
+  bottom: -5px;
+  transition: 0.3s;
+}
+
+ul li a:not(.btn):hover::after {
+  width: 100%;
+}
+
+ul li a:not(.btn):hover {
+  color: #FCD34D;
+}
+
+/* Botón Login */
+.btn {
+  background-color: #FBBF24;
+  color: #1F2937;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #FCD34D;
+  color: #1F2937;
+}
+
+/* Usuario logueado */
+.nav-usuario {
+    color: #FBBF24;
+    font-size: 0.9rem;
+}
+
+.btn-salir {
+    background-color: #FBBF24;
+    color: #1F2937;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.btn-salir:hover {
+    background-color: #FCD34D;
+}
