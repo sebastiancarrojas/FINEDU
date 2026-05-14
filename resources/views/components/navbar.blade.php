@@ -1,23 +1,28 @@
+@php
+    $esHome = request()->is('/') || request()->routeIs('home');
+@endphp
+
 <nav>
-    <div class="logo">Finedu</div>
+    <div class="logo">
+        <a href="{{ url('/') }}" style="color:#FBBF24; text-decoration:none;">Finedu</a>
+    </div>
 
     <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#acerca">Acerca</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="{{ $esHome ? '#inicio' : url('/#inicio') }}">Inicio</a></li>
+        <li><a href="{{ $esHome ? '#servicios' : url('/#servicios') }}">Servicios</a></li>
+        <li><a href="{{ $esHome ? '#acerca' : url('/#acerca') }}">Acerca</a></li>
+        <li><a href="{{ $esHome ? '#contacto' : url('/#contacto') }}">Contacto</a></li>
 
         @auth
             <li>
-                <span style="color:white; margin-right: 10px;">
-                    {{ auth()->user()->name }}  {{-- opcional, muestra el nombre --}}
-                </span>
+                <a href="{{ route('profile.edit') }}" style="color:white;">
+                    {{ auth()->user()->name }}
+                </a>
             </li>
             <li>
                 <form method="POST" action="{{ route('logout') }}" style="display:inline">
                     @csrf
-                    <button type="submit"
-                            class="btn"
+                    <button type="submit" class="btn"
                             style="border:none;cursor:pointer;font-family:inherit;font-size:1rem;">
                         Salir
                     </button>
@@ -26,7 +31,7 @@
         @else
             <li>
                 <a href="#" class="btn"
-                   onclick="document.getElementById('modal-login').style.display='flex'">
+                   onclick="document.getElementById('modal-login').style.display='flex'; return false;">
                     Login
                 </a>
             </li>
