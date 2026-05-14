@@ -451,3 +451,80 @@ input[type="date"]:focus {
     white-space: nowrap;
     width: 70px;
 }
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: #1F2937;
+    border-radius: 14px;
+    padding: 40px;
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    color: #9CA3AF;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.modal-logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #FBBF24;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    color: #9CA3AF;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px 14px;
+    background: #111827;
+    border: 1px solid #374151;
+    border-radius: 8px;
+    color: #FEFCE8;
+    font-size: 1rem;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background: #FBBF24;
+    color: #111827;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 8px;
+}
+
+.btn-submit:hover {
+    background: #F59E0B;
+}

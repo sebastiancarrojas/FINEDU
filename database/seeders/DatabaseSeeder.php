@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
             'password'          => Hash::make('finedu123'),
             'email_verified_at' => now(),
         ]);
+
+        $this->call(CategoriaSeeder::class);
+        $this->call(GastoSeeder::class);
     }
 }
