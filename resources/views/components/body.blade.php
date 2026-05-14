@@ -1,86 +1,128 @@
-<?php $destino = isset($_SESSION['usuario']) ? 'dashboard.php' : 'login.php'; ?>
+@php
+    $destino = auth()->check() ? route('dashboard') : null;
+@endphp
 
 <section class="seccion-bienvenida" id="inicio">
-        <div class="slider-container">
+    <div class="slider-container">
 
-            <div class="slider-puntos">
-                <a href="#slide-1"></a>
-                <a href="#slide-2"></a>
-                <a href="#slide-3"></a>
-            </div>
-
-            <div class="slider-wrapper">
-                <article class="slide" id="slide-1">
-                    <div class="contenido-texto">
-                        <span class="etiqueta-servicio">Ahorro</span>
-                        <h2>Tu Plan de Ahorro <br> a un clic</h2>
-                        <p>No dejes tus sueños al azar. Proyecta cuánto puedes ahorrar mensualmente y alcanza tus metas financieras.</p>
-                        <a href="<?php echo $destino; ?>" class="btn-cta">Empezar ahora</a>
-                    </div>
-                    <div class="contenido-imagen">
-                        <img src="imagenes/Ahorro.png" alt="Ahorro y Finanzas">
-                    </div>
-                </article>
-
-                <article class="slide" id="slide-2">
-                    <div class="contenido-texto">
-                        <span class="etiqueta-servicio">Calcular</span>
-                        <h2>¿Sabes cuánto <br> ganas realmente?</h2>
-                        <p>Calcula tu salario neto después de aportes a salud y pensión. Transparencia total para tu bolsillo.</p>
-                        <a href="<?php echo $destino; ?>" class="btn-cta">Calcular Salario</a>
-                    </div>
-                    <div class="contenido-imagen">
-                        <img src="imagenes/Calcular.png" alt="Calculadora Financiera">
-                    </div>
-                </article>
-
-                <article class="slide" id="slide-3">
-                    <div class="contenido-texto">
-                        <span class="etiqueta-servicio">Planificar</span>
-                        <h2>Ordena tus finanzas <br> y vive tranquilo</h2>
-                        <p>Crea un esquema de tus gastos y conserva una salud financiera adecuada</p>
-                        <a href="<?php echo $destino; ?>" class="btn-cta">Crear Esquema</a>
-                    </div>
-                    <div class="contenido-imagen">
-                        <img src="imagenes/Planificacion.png" alt="Calculadora Financiera">
-                    </div>
-                </article>
-                
-            </div>
+        <div class="slider-puntos">
+            <a href="#slide-1"></a>
+            <a href="#slide-2"></a>
+            <a href="#slide-3"></a>
         </div>
+
+        <div class="slider-wrapper">
+            <article class="slide" id="slide-1">
+                <div class="contenido-texto">
+                    <span class="etiqueta-servicio">Ahorro</span>
+                    <h2>Tu Plan de Ahorro <br> a un clic</h2>
+                    <p>No dejes tus sueños al azar. Proyecta cuánto puedes ahorrar mensualmente y alcanza tus metas financieras.</p>
+                    @auth
+                        <a href="{{ route('dashboard') }}" class="btn-cta">Empezar ahora</a>
+                    @else
+                        <a href="#" class="btn-cta"
+                           onclick="document.getElementById('modal-login').style.display='flex'; return false;">
+                            Empezar ahora
+                        </a>
+                    @endauth
+                </div>
+                <div class="contenido-imagen">
+                    <img src="imagenes/Ahorro.png" alt="Ahorro y Finanzas">
+                </div>
+            </article>
+
+            <article class="slide" id="slide-2">
+                <div class="contenido-texto">
+                    <span class="etiqueta-servicio">Calcular</span>
+                    <h2>¿Sabes cuánto <br> ganas realmente?</h2>
+                    <p>Calcula tu salario neto después de aportes a salud y pensión. Transparencia total para tu bolsillo.</p>
+                    @auth
+                        <a href="{{ route('dashboard') }}" class="btn-cta">Calcular Salario</a>
+                    @else
+                        <a href="#" class="btn-cta"
+                           onclick="document.getElementById('modal-login').style.display='flex'; return false;">
+                            Calcular Salario
+                        </a>
+                    @endauth
+                </div>
+                <div class="contenido-imagen">
+                    <img src="imagenes/Calcular.png" alt="Calculadora Financiera">
+                </div>
+            </article>
+
+            <article class="slide" id="slide-3">
+                <div class="contenido-texto">
+                    <span class="etiqueta-servicio">Planificar</span>
+                    <h2>Ordena tus finanzas <br> y vive tranquilo</h2>
+                    <p>Crea un esquema de tus gastos y conserva una salud financiera adecuada</p>
+                    @auth
+                        <a href="{{ route('dashboard') }}" class="btn-cta">Crear Esquema</a>
+                    @else
+                        <a href="#" class="btn-cta"
+                           onclick="document.getElementById('modal-login').style.display='flex'; return false;">
+                            Crear Esquema
+                        </a>
+                    @endauth
+                </div>
+                <div class="contenido-imagen">
+                    <img src="imagenes/Planificacion.png" alt="Calculadora Financiera">
+                </div>
+            </article>
+        </div>
+    </div>
 </section>
 
 <section class="seccion-servicios" id="servicios">
-        <div class="contenedor-servicios">
-            <div class="texto-introduccion">
-                <h2 class="titulo-principal">Nuestras Herramientas Financieras</h2>
-                <p class="descripcion-corta">Gestiona tu dinero de forma inteligente con nuestros módulos especializados.</p>
+    <div class="contenedor-servicios">
+        <div class="texto-introduccion">
+            <h2 class="titulo-principal">Nuestras Herramientas Financieras</h2>
+            <p class="descripcion-corta">Gestiona tu dinero de forma inteligente con nuestros módulos especializados.</p>
+        </div>
+        <div class="grid-servicios">
+            <div class="tarjeta-servicio">
+                <div class="icono-servicio">💵</div>
+                <h3>Simulador de Salario</h3>
+                <p>Calcula tus ingresos netos y deducciones de ley de forma automática.</p>
+                @auth
+                    <a href="{{ route('dashboard') }}" class="enlace-servicio">Probar módulo ➔</a>
+                @else
+                    <a href="#" class="enlace-servicio"
+                       onclick="document.getElementById('modal-login').style.display='flex'; return false;">
+                        Probar módulo ➔
+                    </a>
+                @endauth
             </div>
-            <div class="grid-servicios">
-                <div class="tarjeta-servicio">
-                    <div class="icono-servicio">💵</div>
-                    <h3>Simulador de Salario</h3>
-                    <p>Calcula tus ingresos netos y deducciones de ley de forma automática.</p>
-                    <a href="<?php echo $destino; ?>" class="enlace-servicio">Probar módulo ➔</a>
-                </div>
 
-                <div class="tarjeta-servicio">
-                    <div class="icono-servicio">🎯</div>
-                    <h3>Proyección de Ahorro</h3>
-                    <p>Define una meta y nosotros te diremos cuánto debes guardar cada mes.</p>
-                    <a href="<?php echo $destino; ?>" class="enlace-servicio">Probar módulo ➔</a>
-                </div>
+            <div class="tarjeta-servicio">
+                <div class="icono-servicio">🎯</div>
+                <h3>Proyección de Ahorro</h3>
+                <p>Define una meta y nosotros te diremos cuánto debes guardar cada mes.</p>
+                @auth
+                    <a href="{{ route('dashboard') }}" class="enlace-servicio">Probar módulo ➔</a>
+                @else
+                    <a href="#" class="enlace-servicio"
+                       onclick="document.getElementById('modal-login').style.display='flex'; return false;">
+                        Probar módulo ➔
+                    </a>
+                @endauth
+            </div>
 
-                <div class="tarjeta-servicio">
-                    <div class="icono-servicio">📊</div>
-                    <h3>Gasto Mensual</h3>
-                    <p>Organiza tus gastos fijos y variables para que no te falte dinero al final del mes.</p>
-                    <a href="<?php echo $destino; ?>" class="enlace-servicio">Probar módulo ➔</a>
-                </div>
+            <div class="tarjeta-servicio">
+                <div class="icono-servicio">📊</div>
+                <h3>Gasto Mensual</h3>
+                <p>Organiza tus gastos fijos y variables para que no te falte dinero al final del mes.</p>
+                @auth
+                    <a href="{{ route('dashboard') }}" class="enlace-servicio">Probar módulo ➔</a>
+                @else
+                    <a href="#" class="enlace-servicio"
+                       onclick="document.getElementById('modal-login').style.display='flex'; return false;">
+                        Probar módulo ➔
+                    </a>
+                @endauth
             </div>
         </div>
+    </div>
 </section>
-
 
 <!-- SECCIÓN ACERCA -->
 <section class="seccion-acerca" id="acerca">
@@ -147,71 +189,42 @@
                 </div>
             </div>
         </div>
-       <div class="contacto-formulario" id="contacto-formulario">
-    <form method="POST" action="index.php">
-        <div class="campo-grupo">
-            <div class="campo">
-                <label for="f-nombre">Nombre <span class="campo-requerido">*</span></label>
-                <input
-                    type="text"
-                    id="f-nombre"
-                    name="nombre"
-                    placeholder="Tu nombre completo"
-                    minlength="2"
-                    maxlength="80"
-                    autocomplete="name"
-                    required
-                >
-            </div>
-            <div class="campo">
-                <label for="f-correo">Correo electrónico <span class="campo-requerido">*</span></label>
-                <input
-                    type="email"
-                    id="f-correo"
-                    name="correo"
-                    placeholder="tu@correo.com"
-                    autocomplete="email"
-                    required
-                >
-            </div>
-        </div>
-        <div class="campo">
-            <label for="f-telefono">Teléfono <span class="campo-opcional">(opcional)</span></label>
-            <input
-                type="tel"
-                id="f-telefono"
-                name="telefono"
-                placeholder="300 123 4567"
-                pattern="[0-9\s\+\-]{7,15}"
-                autocomplete="tel"
-            >
-        </div>
-        <div class="campo">
-            <label for="f-asunto">Asunto <span class="campo-requerido">*</span></label>
-            <input
-                type="text"
-                id="f-asunto"
-                name="asunto"
-                placeholder="¿En qué podemos ayudarte?"
-                minlength="3"
-                maxlength="120"
-                required
-            >
-        </div>
-        <div class="campo">
-            <label for="f-mensaje">Mensaje <span class="campo-requerido">*</span></label>
-            <textarea
-                id="f-mensaje"
-                name="mensaje"
-                placeholder="Cuéntanos tu consulta o comentario..."
-                rows="5"
-                minlength="10"
-                maxlength="1000"
-                required
-            ></textarea>
-        </div>
-        <p class="leyenda-requerido"><span class="campo-requerido">*</span> Campos obligatorios</p>
-        <button class="btn-enviar" type="submit">Enviar mensaje </button>
+        <div class="contacto-formulario" id="contacto-formulario">
+            <form method="POST" action="#">
+                @csrf
+                <div class="campo-grupo">
+                    <div class="campo">
+                        <label for="f-nombre">Nombre <span class="campo-requerido">*</span></label>
+                        <input type="text" id="f-nombre" name="nombre"
+                               placeholder="Tu nombre completo"
+                               minlength="2" maxlength="80" autocomplete="name" required>
+                    </div>
+                    <div class="campo">
+                        <label for="f-correo">Correo electrónico <span class="campo-requerido">*</span></label>
+                        <input type="email" id="f-correo" name="correo"
+                               placeholder="tu@correo.com" autocomplete="email" required>
+                    </div>
+                </div>
+                <div class="campo">
+                    <label for="f-telefono">Teléfono <span class="campo-opcional">(opcional)</span></label>
+                    <input type="tel" id="f-telefono" name="telefono"
+                           placeholder="300 123 4567"
+                           pattern="[0-9\s\+\-]{7,15}" autocomplete="tel">
+                </div>
+                <div class="campo">
+                    <label for="f-asunto">Asunto <span class="campo-requerido">*</span></label>
+                    <input type="text" id="f-asunto" name="asunto"
+                           placeholder="¿En qué podemos ayudarte?"
+                           minlength="3" maxlength="120" required>
+                </div>
+                <div class="campo">
+                    <label for="f-mensaje">Mensaje <span class="campo-requerido">*</span></label>
+                    <textarea id="f-mensaje" name="mensaje"
+                              placeholder="Cuéntanos tu consulta o comentario..."
+                              rows="5" minlength="10" maxlength="1000" required></textarea>
+                </div>
+                <p class="leyenda-requerido"><span class="campo-requerido">*</span> Campos obligatorios</p>
+                <button class="btn-enviar" type="submit">Enviar mensaje</button>
             </form>
         </div>
     </div>

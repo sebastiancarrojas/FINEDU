@@ -13,7 +13,7 @@
     <!-- ENCABEZADO -->
     <div class="gastos-header">
         <div class="gastos-header-texto">
-            <a href="dashboard.php" class="btn-volver">← Volver al inicio</a>
+            <a href="{{ route('dashboard') }}" class="btn-volver">← Volver al inicio</a>
             <h1>Planificador de <span>Gastos</span></h1>
             <p>Organiza y distribuye tus gastos de forma equilibrada.</p>
         </div>
