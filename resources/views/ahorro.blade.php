@@ -1,9 +1,9 @@
 @extends('layouts.app')
-
+ 
 @section('content')
-
+ 
 <main class="ahorro-main">
-
+ 
     <div class="ahorro-header">
         <div class="ahorro-header-texto">
             <a href="{{ route('dashboard') }}" class="btn-volver">← Volver al inicio</a>
@@ -11,9 +11,9 @@
             <p>Define tu meta, el plazo y descubre cuánto debes ahorrar cada mes.</p>
         </div>
     </div>
-
+ 
     <div class="ahorro-contenedor">
-
+ 
         <!-- COLUMNA IZQUIERDA: Formulario -->
         <aside class="ahorro-sidebar">
             <div class="card">
@@ -21,18 +21,18 @@
                     <span class="card-icono">🎯</span>
                     <h2>Define tu meta</h2>
                 </div>
-
+ 
                 @if(session('exito'))
                     <div class="alerta-exito">✓ {{ session('exito') }}</div>
                 @endif
-
+ 
                 @if($errors->any())
                     <div class="alerta-error">{{ $errors->first() }}</div>
                 @endif
-
+ 
                 <form method="POST" action="{{ route('ahorro.store') }}">
                     @csrf
-
+ 
                     <div class="campo">
                         <label for="meta_nombre">Nombre de la meta</label>
                         <input type="text" id="meta_nombre" name="meta_nombre"
@@ -41,7 +41,7 @@
                                style="padding:11px 14px;border:1.5px solid #D1D5DB;border-radius:8px;font-size:0.93rem;font-family:inherit;width:100%;box-sizing:border-box;"
                                required>
                     </div>
-
+ 
                     <div class="campo">
                         <label for="valor_meta">Meta de ahorro</label>
                         <div class="input-prefix-wrapper">
@@ -51,7 +51,7 @@
                                    value="{{ old('valor_meta') }}" required>
                         </div>
                     </div>
-
+ 
                     <div class="campo">
                         <label for="ahorro_actual">Ahorro actual</label>
                         <div class="input-prefix-wrapper">
@@ -61,7 +61,7 @@
                                    value="{{ old('ahorro_actual', 0) }}" required>
                         </div>
                     </div>
-
+ 
                     <div class="campo">
                         <label for="plazo_meses">Plazo</label>
                         <div class="select-wrapper">
@@ -79,15 +79,15 @@
                             <span class="select-arrow">▾</span>
                         </div>
                     </div>
-
+ 
                     <button type="submit" class="btn-calcular">Guardar plan</button>
                 </form>
             </div>
         </aside>
-
+ 
         <!-- COLUMNA DERECHA: Planes guardados -->
         <section class="ahorro-resultados-seccion">
-
+ 
             @forelse($planes as $plan)
                 @php
                     $porcentaje = $plan->valor_meta > 0
@@ -95,22 +95,30 @@
                         : 0;
                     $falta = max(0, $plan->valor_meta - $plan->ahorro_actual);
                 @endphp
-
+ 
                 <div class="card">
+                    <!-- Título + botones -->
                     <div class="card-titulo" style="justify-content:space-between;">
                         <div style="display:flex;align-items:center;gap:10px;">
                             <span class="card-icono">🎯</span>
                             <h2>{{ $plan->meta_nombre }}</h2>
                         </div>
-                        <form method="POST" action="{{ route('ahorro.destroy', $plan->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                    style="background:none;border:none;cursor:pointer;color:#FCA5A5;font-size:1.2rem;"
-                                    title="Eliminar plan">🗑</button>
-                        </form>
+                        <div style="display:flex;gap:8px;align-items:center;">
+                            <!-- Botón editar -->
+                            <button onclick="abrirEditar({{ $plan->id }}, {{ $plan->ahorro_actual }}, '{{ $plan->meta_nombre }}')"
+                                    style="background:none;border:none;cursor:pointer;font-size:1.2rem;"
+                                    title="Actualizar ahorro">✏️</button>
+                            <!-- Botón eliminar -->
+                            <form method="POST" action="{{ route('ahorro.destroy', $plan->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                        style="background:none;border:none;cursor:pointer;color:#FCA5A5;font-size:1.2rem;"
+                                        title="Eliminar plan">🗑</button>
+                            </form>
+                        </div>
                     </div>
-
+ 
                     <!-- Barra de progreso -->
                     <div class="progreso-labels">
                         <span>Ahorrado: <strong>${{ number_format($plan->ahorro_actual, 0, ',', '.') }}</strong></span>
@@ -122,7 +130,7 @@
                     <div class="progreso-porcentaje">
                         <span>{{ $porcentaje }}%</span> completado
                     </div>
-
+ 
                     <!-- Desglose -->
                     <div class="resultado-lista" style="margin-top:20px;">
                         <div class="resultado-fila">
@@ -134,7 +142,7 @@
                             <strong>${{ number_format($falta, 0, ',', '.') }}</strong>
                         </div>
                     </div>
-
+ 
                     <!-- Cuota mensual -->
                     <div style="background:#1F2937;border-radius:10px;padding:16px;text-align:center;margin-top:16px;">
                         <p style="color:#9CA3AF;font-size:0.85rem;margin-bottom:6px;">Debes ahorrar cada mes</p>
@@ -146,7 +154,7 @@
                         </p>
                     </div>
                 </div>
-
+ 
             @empty
                 <div class="card" style="text-align:center;padding:60px 28px;">
                     <div style="font-size:3rem;margin-bottom:16px;">🎯</div>
@@ -154,13 +162,50 @@
                     <p style="color:#6B7280;font-size:0.9rem;">Crea tu primera meta usando el formulario.</p>
                 </div>
             @endforelse
-
+ 
         </section>
     </div>
 </main>
-
+ 
+<!-- MODAL EDITAR AHORRO -->
+<div id="modal-editar" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999;align-items:center;justify-content:center;">
+    <div style="background:#1F2937;border-radius:14px;padding:36px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+        <h3 style="color:#FBBF24;font-size:1.2rem;margin-bottom:6px;">Actualizar ahorro</h3>
+        <p id="modal-meta-nombre" style="color:#9CA3AF;font-size:0.9rem;margin-bottom:24px;"></p>
+ 
+        <form id="form-editar" method="POST">
+            @csrf
+            @method('PATCH')
+ 
+            <div style="margin-bottom:18px;">
+                <label style="display:block;color:#FEFCE8;font-size:0.85rem;font-weight:bold;margin-bottom:6px;">
+                    Nuevo ahorro acumulado
+                </label>
+                <div style="display:flex;align-items:center;border:1.5px solid #374151;border-radius:8px;overflow:hidden;background:#111827;">
+                    <span style="padding:11px 12px;background:#374151;color:#9CA3AF;font-weight:700;">$</span>
+                    <input type="number" id="nuevo-ahorro" name="ahorro_actual"
+                           placeholder="0" min="0"
+                           style="flex:1;padding:11px 14px;border:none;background:transparent;color:#FEFCE8;font-size:0.95rem;outline:none;">
+                </div>
+            </div>
+ 
+            <div style="display:flex;gap:12px;">
+                <button type="button"
+                        onclick="document.getElementById('modal-editar').style.display='none'"
+                        style="flex:1;padding:11px;background:transparent;color:#9CA3AF;border:1.5px solid #374151;border-radius:7px;font-size:0.95rem;cursor:pointer;font-family:inherit;">
+                    Cancelar
+                </button>
+                <button type="submit"
+                        style="flex:1;padding:11px;background:#FBBF24;color:#1F2937;border:none;border-radius:7px;font-size:0.95rem;font-weight:bold;cursor:pointer;font-family:inherit;">
+                    Guardar cambios
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+ 
 <link rel="stylesheet" href="{{ asset('css/ahorro.css') }}">
-
+ 
 <style>
 .alerta-exito {
     background: rgba(34,197,94,0.15);
@@ -181,5 +226,14 @@
     margin-bottom: 16px;
 }
 </style>
-
+ 
+<script>
+function abrirEditar(id, ahorroActual, nombre) {
+    document.getElementById('form-editar').action = '/ahorro/' + id;
+    document.getElementById('nuevo-ahorro').value = ahorroActual;
+    document.getElementById('modal-meta-nombre').textContent = 'Meta: ' + nombre;
+    document.getElementById('modal-editar').style.display = 'flex';
+}
+</script>
+ 
 @endsection

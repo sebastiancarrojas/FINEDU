@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GastoController;
+use App\Http\Controllers\PlanAhorroController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,6 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/password', [ProfileController::class, 'update'])->name('password.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     Route::put('/gastos/{gasto}', [GastoController::class, 'update'])->name('gastos.update');
 
     Route::get('/salario', function () {
@@ -24,6 +27,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/ahorro', [PlanAhorroController::class, 'index'])->name('ahorro');
     Route::post('/ahorro', [PlanAhorroController::class, 'store'])->name('ahorro.store');
+    Route::patch('/ahorro/{id}', [PlanAhorroController::class, 'update'])->name('ahorro.update');
     Route::delete('/ahorro/{id}', [PlanAhorroController::class, 'destroy'])->name('ahorro.destroy');
 
     Route::get('/gastos',            [GastoController::class, 'index'])->name('gastos');

@@ -1,11 +1,11 @@
 <?php
-
+ 
 namespace App\Http\Controllers;
-
+ 
 use App\Models\PlanAhorro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+ 
 class PlanAhorroController extends Controller
 {
     public function index()
@@ -13,10 +13,10 @@ class PlanAhorroController extends Controller
         $planes = PlanAhorro::where('user_id', Auth::id())
                     ->orderBy('created_at', 'desc')
                     ->get();
-
+ 
         return view('ahorro', compact('planes'));
     }
-
+ 
     public function store(Request $request)
     {
         $request->validate([
@@ -25,10 +25,10 @@ class PlanAhorroController extends Controller
             'ahorro_actual' => 'required|numeric|min:0',
             'plazo_meses'   => 'required|integer|min:1',
         ]);
-
+ 
         $falta         = $request->valor_meta - $request->ahorro_actual;
         $ahorroMensual = $falta > 0 ? $falta / $request->plazo_meses : 0;
-
+ 
         PlanAhorro::create([
             'user_id'        => Auth::id(),
             'meta_nombre'    => $request->meta_nombre,
@@ -37,17 +37,38 @@ class PlanAhorroController extends Controller
             'plazo_meses'    => $request->plazo_meses,
             'ahorro_mensual' => $ahorroMensual,
         ]);
-
+ 
         return redirect()->route('ahorro')->with('exito', '¡Plan guardado correctamente!');
     }
-
+ 
+    public function update(Request $request, $id)
+    {
+        $plan = PlanAhorro::where('id', $id)
+                          ->where('user_id', Auth::id())
+                          ->firstOrFail();
+ 
+        $request->validate([
+            'ahorro_actual' => 'required|numeric|min:0',
+        ]);
+ 
+        $falta         = $plan->valor_meta - $request->ahorro_actual;
+        $ahorroMensual = $falta > 0 ? $falta / $plan->plazo_meses : 0;
+ 
+        $plan->update([
+            'ahorro_actual'  => $request->ahorro_actual,
+            'ahorro_mensual' => $ahorroMensual,
+        ]);
+ 
+        return redirect()->route('ahorro')->with('exito', '¡Plan actualizado correctamente!');
+    }
+ 
     public function destroy($id)
     {
         $plan = PlanAhorro::where('id', $id)
                           ->where('user_id', Auth::id())
                           ->firstOrFail();
         $plan->delete();
-
+ 
         return redirect()->route('ahorro')->with('exito', 'Plan eliminado.');
     }
 }
