@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Finedu</title>
+
     <link rel="icon" type="image/png" href="{{ asset('imagenes/favicon.ico') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/body.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
 
-    @include('components.navbar')
+    <x-navbar-dashboard />
 
     @yield('content')
-
-    @include('components.footer')
 
 </body>
 </html>

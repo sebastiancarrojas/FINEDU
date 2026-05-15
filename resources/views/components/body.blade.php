@@ -2,9 +2,19 @@
     $destino = auth()->check() ? route('dashboard') : null;
 @endphp
 
+{{-- ══════════════════════════════════════════
+     MÓDULO 1: SECCIÓN BIENVENIDA — SLIDER
+     Hero principal de la landing page.
+     Contiene 3 slides con imagen, texto y CTA.
+     Comportamiento del botón según autenticación:
+     - @auth:  redirige al dashboard directamente.
+     - @else:  abre el modal de login con JS.
+     No usa controlador ni base de datos.
+══════════════════════════════════════════ --}}
 <section class="seccion-bienvenida" id="inicio">
     <div class="slider-container">
 
+        {{-- Puntos de navegación entre slides --}}
         <div class="slider-puntos">
             <a href="#slide-1"></a>
             <a href="#slide-2"></a>
@@ -12,6 +22,11 @@
         </div>
 
         <div class="slider-wrapper">
+
+            {{-- ══════════════════════════════════════════
+                 MÓDULO 1A: SLIDE 1 — AHORRO
+                 Presenta el módulo de Plan de Ahorro.
+            ══════════════════════════════════════════ --}}
             <article class="slide" id="slide-1">
                 <div class="contenido-texto">
                     <span class="etiqueta-servicio">Ahorro</span>
@@ -31,6 +46,10 @@
                 </div>
             </article>
 
+            {{-- ══════════════════════════════════════════
+                 MÓDULO 1B: SLIDE 2 — CALCULADORA
+                 Presenta el módulo de Calculadora de Salario.
+            ══════════════════════════════════════════ --}}
             <article class="slide" id="slide-2">
                 <div class="contenido-texto">
                     <span class="etiqueta-servicio">Calcular</span>
@@ -50,6 +69,10 @@
                 </div>
             </article>
 
+            {{-- ══════════════════════════════════════════
+                 MÓDULO 1C: SLIDE 3 — PLANIFICACIÓN
+                 Presenta el módulo de Planificador de Gastos.
+            ══════════════════════════════════════════ --}}
             <article class="slide" id="slide-3">
                 <div class="contenido-texto">
                     <span class="etiqueta-servicio">Planificar</span>
@@ -68,17 +91,31 @@
                     <img src="imagenes/Planificacion.png" alt="Calculadora Financiera">
                 </div>
             </article>
+
         </div>
     </div>
 </section>
 
+{{-- ══════════════════════════════════════════
+     MÓDULO 2: SECCIÓN SERVICIOS
+     Grid de 3 tarjetas que presentan cada módulo
+     de la aplicación con ícono, título y descripción.
+     Mismo comportamiento de autenticación que el slider:
+     - @auth:  va al dashboard.
+     - @else:  abre el modal de login.
+     No usa controlador ni base de datos.
+══════════════════════════════════════════ --}}
 <section class="seccion-servicios" id="servicios">
     <div class="contenedor-servicios">
+
         <div class="texto-introduccion">
             <h2 class="titulo-principal">Nuestras Herramientas Financieras</h2>
             <p class="descripcion-corta">Gestiona tu dinero de forma inteligente con nuestros módulos especializados.</p>
         </div>
+
         <div class="grid-servicios">
+
+            {{-- Tarjeta: Simulador de Salario --}}
             <div class="tarjeta-servicio">
                 <div class="icono-servicio">💵</div>
                 <h3>Simulador de Salario</h3>
@@ -93,6 +130,7 @@
                 @endauth
             </div>
 
+            {{-- Tarjeta: Proyección de Ahorro --}}
             <div class="tarjeta-servicio">
                 <div class="icono-servicio">🎯</div>
                 <h3>Proyección de Ahorro</h3>
@@ -107,6 +145,7 @@
                 @endauth
             </div>
 
+            {{-- Tarjeta: Gasto Mensual --}}
             <div class="tarjeta-servicio">
                 <div class="icono-servicio">📊</div>
                 <h3>Gasto Mensual</h3>
@@ -120,13 +159,22 @@
                     </a>
                 @endauth
             </div>
+
         </div>
     </div>
 </section>
 
-<!-- SECCIÓN ACERCA -->
+{{-- ══════════════════════════════════════════
+     MÓDULO 3: SECCIÓN ACERCA
+     Presenta información institucional de Finedu:
+     quiénes son, objetivo, justificación y
+     resultado esperado. Contenido estático,
+     no usa controlador ni base de datos.
+══════════════════════════════════════════ --}}
 <section class="seccion-acerca" id="acerca">
     <div class="acerca-contenedor">
+
+        {{-- Texto principal e indicadores estadísticos --}}
         <div class="acerca-texto">
             <span class="etiqueta-acerca">Quiénes somos</span>
             <h2>Finanzas inteligentes <br>para todos</h2>
@@ -147,29 +195,49 @@
                 </div>
             </div>
         </div>
+
+        {{-- Tarjetas de valores institucionales --}}
         <div class="acerca-valores">
+
+            {{-- Tarjeta: Objetivo del proyecto --}}
             <div class="valor-card">
                 <div class="valor-icono">🎯</div>
                 <h3>Objetivo</h3>
                 <p>Desarrollar una aplicación web que permita a los usuarios gestionar mejor su dinero mediante herramientas de cálculo de salario, planificación de ahorro y organización de gastos.</p>
             </div>
+
+            {{-- Tarjeta: Justificación del proyecto --}}
             <div class="valor-card">
                 <div class="valor-icono">💡</div>
                 <h3>Justificación</h3>
                 <p>Muchas personas no tienen claridad sobre su salario real ni saben cómo organizar sus gastos. Finedu ofrece una alternativa accesible a la asesoría financiera profesional, mejorando los hábitos económicos de quienes la usan.</p>
             </div>
+
+            {{-- Tarjeta: Resultado esperado --}}
             <div class="valor-card">
                 <div class="valor-icono">🏆</div>
                 <h3>Resultado esperado</h3>
                 <p>Que los usuarios logren organizar sus gastos, ahorrar de forma más efectiva y tener mayor control sobre su dinero gracias a herramientas simples y visuales.</p>
             </div>
+
         </div>
     </div>
 </section>
 
-<!-- SECCIÓN CONTACTO -->
+{{-- ══════════════════════════════════════════
+     MÓDULO 4: SECCIÓN CONTACTO
+     Formulario de contacto estático.
+     IMPORTANTE: el action="#" indica que aún
+     no tiene controlador ni ruta implementada,
+     por lo que el formulario no envía datos reales.
+     Campos: nombre, correo, teléfono, asunto, mensaje.
+     Incluye validaciones HTML5 (required, pattern,
+     minlength, maxlength) del lado del cliente.
+══════════════════════════════════════════ --}}
 <section class="seccion-contacto" id="contacto">
     <div class="contacto-contenedor">
+
+        {{-- Información de contacto institucional --}}
         <div class="contacto-info">
             <span class="etiqueta-contacto">Escríbenos</span>
             <h2>¿Tienes alguna pregunta?</h2>
@@ -189,9 +257,13 @@
                 </div>
             </div>
         </div>
+
+        {{-- Formulario de contacto (sin controlador implementado aún) --}}
         <div class="contacto-formulario" id="contacto-formulario">
             <form method="POST" action="#">
                 @csrf
+
+                {{-- Fila doble: nombre y correo --}}
                 <div class="campo-grupo">
                     <div class="campo">
                         <label for="f-nombre">Nombre <span class="campo-requerido">*</span></label>
@@ -205,27 +277,33 @@
                                placeholder="tu@correo.com" autocomplete="email" required>
                     </div>
                 </div>
+
+                {{-- Teléfono opcional con validación de formato --}}
                 <div class="campo">
                     <label for="f-telefono">Teléfono <span class="campo-opcional">(opcional)</span></label>
                     <input type="tel" id="f-telefono" name="telefono"
                            placeholder="300 123 4567"
                            pattern="[0-9\s\+\-]{7,15}" autocomplete="tel">
                 </div>
+
                 <div class="campo">
                     <label for="f-asunto">Asunto <span class="campo-requerido">*</span></label>
                     <input type="text" id="f-asunto" name="asunto"
                            placeholder="¿En qué podemos ayudarte?"
                            minlength="3" maxlength="120" required>
                 </div>
+
                 <div class="campo">
                     <label for="f-mensaje">Mensaje <span class="campo-requerido">*</span></label>
                     <textarea id="f-mensaje" name="mensaje"
                               placeholder="Cuéntanos tu consulta o comentario..."
                               rows="5" minlength="10" maxlength="1000" required></textarea>
                 </div>
+
                 <p class="leyenda-requerido"><span class="campo-requerido">*</span> Campos obligatorios</p>
                 <button class="btn-enviar" type="submit">Enviar mensaje</button>
             </form>
         </div>
+
     </div>
 </section>

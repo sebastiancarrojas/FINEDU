@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/ahorro', [PlanAhorroController::class, 'store'])->name('ahorro.store');
     Route::patch('/ahorro/{id}', [PlanAhorroController::class, 'update'])->name('ahorro.update');
     Route::delete('/ahorro/{id}', [PlanAhorroController::class, 'destroy'])->name('ahorro.destroy');
+    Route::post('/ahorro/{id}/abonar',  [PlanAhorroController::class, 'abonar'])->name('ahorro.abonar');
+    Route::post('/ahorro/{id}/retirar', [PlanAhorroController::class, 'retirar'])->name('ahorro.retirar');
 
     Route::get('/gastos',            [GastoController::class, 'index'])->name('gastos');
     Route::post('/gastos',           [GastoController::class, 'store'])->name('gastos.store');
