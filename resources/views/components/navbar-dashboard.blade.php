@@ -1,6 +1,6 @@
 <nav>
     <div class="logo">
-        <a href="{{ route('dashboard') }}" style="color:#FBBF24; text-decoration:none;">Finedu</a>
+        <a href="{{ url('/') }}" style="color:#FBBF24; text-decoration:none;">Finedu</a>
     </div>
 
     <ul>
